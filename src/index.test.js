@@ -1,5 +1,20 @@
 const testPredicate = require('./index.js').default;
 
+test("'conains' operator", () => {
+  const p = {
+    value: 'foo',
+    operator: 'contains',
+  };
+
+  expect(testPredicate(p, ['foo'])).toBe(true);
+  expect(testPredicate(p, ['baz', 'foo'])).toBe(true);
+  expect(testPredicate(p, 'foo')).toBe(true);
+  expect(testPredicate(p, ['a'])).toBe(false);
+  expect(testPredicate(p, 'simple-thing.1')).toBe(false);
+  expect(testPredicate(p, 'another')).toBe(false);
+  expect(testPredicate(p, 1.1)).toBe(false);
+});
+
 test("'in' operator", () => {
   const p = {
     value: ['foo', 'bar'],

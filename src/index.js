@@ -12,8 +12,13 @@ const stringToRegexp = (str: string): RegExp => {
  * testPredicate takes an operator (defined in src/types.js) and asserts
  * whether the the given input matches the predicate operator/value.
  */
-const testPredicate = (p: Predicate, input: string): boolean => {
+const testPredicate = (p: Predicate, input: string | Array<string>): boolean => {
   switch (p.operator) {
+    case 'contains':
+      if (Array.isArray(input)) {
+        return input.indexOf(p.value) > -1;
+      }
+      return p.value === input;
     case 'in':
       return p.value.indexOf(input) > -1;
     case 'nin':
