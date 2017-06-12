@@ -20,8 +20,14 @@ const testPredicate = (p: Predicate, input: string | Array<string>): boolean => 
       }
       return p.value === input;
     case 'in':
+      if (Array.isArray(input) && input.length === 1) {
+        return p.value.indexOf(input[0]) > -1;
+      }
       return p.value.indexOf(input) > -1;
     case 'nin':
+      if (Array.isArray(input) && input.length === 1) {
+        return p.value.indexOf(input[0]) === -1;
+      }
       return p.value.indexOf(input) === -1;
     case 'eq':
       return p.value === input;

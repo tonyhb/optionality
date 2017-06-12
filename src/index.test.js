@@ -23,6 +23,7 @@ test("'in' operator", () => {
 
   expect(testPredicate(p, 'foo')).toBe(true);
   expect(testPredicate(p, 'bar')).toBe(true);
+  expect(testPredicate(p, ['bar'])).toBe(true);
   expect(testPredicate(p, 'baz')).toBe(false);
   expect(testPredicate(p, ['baz', 'foo'])).toBe(false);
 });
@@ -35,6 +36,7 @@ test("'nin' operator", () => {
 
   expect(testPredicate(p, '')).toBe(false);
   expect(testPredicate(p, 'solo')).toBe(false);
+  expect(testPredicate(p, ['solo'])).toBe(false);
   expect(testPredicate(p, 'foo')).toBe(true);
 });
 
