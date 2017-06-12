@@ -4,6 +4,7 @@ import type { Predicate } from './types';
 
 const stringToRegexp = (str: string): RegExp => {
   const pos = str.lastIndexOf('/');
+  // $FlowFixMe
   return new RegExp(str.slice(1, pos), str.slice(pos + 1));
 }
 
