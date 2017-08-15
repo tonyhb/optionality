@@ -38,6 +38,10 @@ const testPredicate = (p: Predicate, input: string | Array<string>): boolean => 
     case 'gt':
       return parseFloat(p.value) < parseFloat(input);
     case 'regex':
+      // only strings can be tested by regex; return false.
+      if (Array.isArray(input)) {
+        return false;
+      }
       return stringToRegexp(p.value).test(input);
   }
   return true;
